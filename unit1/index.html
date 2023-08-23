@@ -1,0 +1,783 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Unit 2 Signal and Systems" href="../unit2/index.html" /><link rel="prev" title="Welcome to MIT 6.01SC Introduction To Electrical Engineering And Computer Science I Solutions!" href="../index.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Unit 1: Software Engineering - MIT 6.01SC Introduction To Electrical Engineering And Computer Science I 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">MIT 6.01SC Introduction To Electrical Engineering And Computer Science I 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">MIT 6.01SC Introduction To Electrical Engineering And Computer Science I 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Unit 1 Software Engineering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unit2/index.html">Unit 2 Signals and Systems</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Unit 2 Signals and Systems</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unit2/lec03.html">Signal and Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit2/lec04.html">LTI Signals and Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit2/lec05.html">Characterizing System Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit2/lec06.html">Designing Control Systems</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div class="tip admonition">
+<p class="admonition-title">TL;DR</p>
+<p>Must See on this page: <a class="reference internal" href="#designlab02"><span class="std std-ref">Design Lab 02 (Controlling Robots)</span></a></p>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="unit-1-software-engineering">
+<h1>Unit 1: Software Engineering<a class="headerlink" href="#unit-1-software-engineering" title="Link to this heading"></a></h1>
+<p>Notes:</p>
+<iframe src="MIT 6.01SC Unit 1 Software Engineering Notes.pdf" style="height: 400px; width: 100%"></iframe><section id="lecture-1-oop">
+<h2>Lecture 1 OOP<a class="headerlink" href="#lecture-1-oop" title="Link to this heading"></a></h2>
+<section id="lecture-handout">
+<h3>Lecture Handout:<a class="headerlink" href="#lecture-handout" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/9083a2e7e6d95c24695b08509bd15bd4_MIT6_01SCS11_lec01_handout.pdf">Lecture 1 handout</a></p>
+</section>
+<section id="readings">
+<h3>Readings<a class="headerlink" href="#readings" title="Link to this heading"></a></h3>
+<p>Read chapters 1-3 of the course notes.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/resources/mit6_01scs11_chap01/">Chapter 1: Course Overview (PDF)</a></p></li>
+<li><p><a class="reference external" href="https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/resources/mit6_01scs11_chap02/">Chapter 2: Learning to Program in Python (PDF)</a></p></li>
+<li><p><a class="reference external" href="https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/resources/mit6_01scs11_chap03/">Chapter 3: Programs and Data (PDF - 1.6MB)</a></p></li>
+</ul>
+</section>
+<section id="my-notes">
+<h3>My Notes<a class="headerlink" href="#my-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Humans deal with complexity by exploiting the power of abstraction and modularity</p></li>
+<li><p>Modularity is the idea of building components that can be re-used; and abstraction is the idea that after constructing a module (be it software or circuits or gears), most of the details of the module construction can be ignored and a simpler description used for module interaction.</p></li>
+<li><p>Lack of modularity makes it very difficult to design large systems, because two different people,
+or the same person at two different times, cannot design pieces and put them together without
+understanding the whole.</p></li>
+<li><p>the key point is that good modules preserve abstraction barriers between the use of a module
+and internal details of how they are constructed</p></li>
+<li><p>Think of a transducer as a processing box that runs continuously.</p></li>
+<li><p>In the context of our PCAP framework, object-oriented programming will give us methods for capturing common patterns in data and the procedures that operate on that data, via classes, generic functions, and inheritance.</p></li>
+</ul>
+<p><img alt="PACP" src="../_images/PCAP.png" /></p>
+</section>
+<section id="design-lab-01">
+<h3>Design Lab 01<a class="headerlink" href="#design-lab-01" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="designLab01Work.html"><span class="doc std std-doc">Source Code</span></a></p>
+</section>
+</section>
+<section id="lecture-2-state-machines">
+<h2>Lecture 2 State Machines<a class="headerlink" href="#lecture-2-state-machines" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Lecture Handout<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/6befa2f7542ca110af48020a8c8cf8ad_MIT6_01SCS11_lec02_handout.pdf">Lecture 2 Handout</a></p>
+</section>
+<section id="reading">
+<h3>Reading<a class="headerlink" href="#reading" title="Link to this heading"></a></h3>
+<p>Read chapter 4.1 of the course notes.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/resources/mit6_01scs11_chap04/">Chapter 4: State Machines (PDF)</a></p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>My Notes<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>State machines are a method of modeling systems whose output depends on the entire history of their inputs, and not just on the most recent input.</p></li>
+<li><p>State machine models can either be continuous time or discrete time.</p></li>
+<li><p>we can think of the job of an embedded system as performing a transduction from a stream (infinite sequence) of input values to a stream of output values</p></li>
+<li><p><strong>Primitive state machines</strong>
+We can specify a transducer (a process that takes as input a sequence of values which serve as
+inputs to the state machine, and returns as output the set of outputs of the machine for each input)
+as a state machine (SM) by specifying:</p>
+<ul>
+<li><p>set of states, S,</p></li>
+<li><p>a set of inputs, I, also called the input vocabulary,</p></li>
+<li><p>a set of outputs, O, also called the output vocabulary,</p></li>
+<li><p>a next-state function, <span class="math notranslate nohighlight">\(n(i_s, s_t) \mapsto s_{t+1}\)</span>, that maps the input at time t and the state at time t to
+the state at time t + 1,</p></li>
+<li><p>an output function, <span class="math notranslate nohighlight">\(o(i_s, s_t) \mapsto o_t\)</span>, that maps the input at time t and the state at time t to the
+output at time t; and</p></li>
+<li><p>an initial state, s0, which is the state at time 0.</p></li>
+</ul>
+</li>
+<li><p>It is important to note that getNextValues does not change the state of the machine, in other words, it does not mutate a state variable. Its job is to be a pure function:</p></li>
+</ul>
+</section>
+<section id="software-lab-02">
+<h3>Software Lab 02<a class="headerlink" href="#software-lab-02" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="swLab02Work.html"><span class="doc std std-doc">Source Code</span></a></p>
+</section>
+<section id="design-lab-02-controlling-robots">
+<h3><strong>Design Lab 02 (Controlling Robots)</strong><a class="headerlink" href="#design-lab-02-controlling-robots" title="Link to this heading"></a></h3>
+<section id="state-transition-diagram">
+<h4>State Transition Diagram<a class="headerlink" href="#state-transition-diagram" title="Link to this heading"></a></h4>
+<p><img alt="state transition diagram" src="../_images/designLab2statemachine.jpg" /></p>
+</section>
+<section id="tutorial">
+<span id="designlab02"></span><h4>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading"></a></h4>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Video</label><div class="sd-tab-content docutils">
+<video autoplay="True" loop="True" muted="True" preload="auto"><source src="https://github.com/Muhammed-Abdullah-Shaikh/MIT-6.01SC-Introduction-To-Electrical-Engineering-And-Computer-Science-I/assets/136577697/0bdca7f9-88ee-4204-b92a-bbd7f064d981" type=""></video></div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Slime Trail</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/tutorialPath.png"><img alt="../_images/tutorialPath.png" src="../_images/tutorialPath.png" style="width: 70%;" /></a>
+</div>
+</div>
+</section>
+<section id="mazeworld">
+<h4>MazeWorld<a class="headerlink" href="#mazeworld" title="Link to this heading"></a></h4>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Video</label><div class="sd-tab-content docutils">
+<video autoplay="True" loop="True" muted="True" preload="auto"><source src="https://github.com/Muhammed-Abdullah-Shaikh/MIT-6.01SC-Introduction-To-Electrical-Engineering-And-Computer-Science-I/assets/136577697/1e0da0be-8d56-4670-88ea-55d6656cdfc5" type=""></video></div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Slime Trail</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/mazeWolrdPath.png"><img alt="../_images/mazeWolrdPath.png" src="../_images/mazeWolrdPath.png" style="width: 70%;" /></a>
+</div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
+<summary class="sd-summary-title sd-card-header">
+Source Code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="py class">
+<dt class="sig sig-object py" id="boundaryBrain.MySMClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MySMClass</span></span><a class="reference internal" href="../_modules/boundaryBrain.html#MySMClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryBrain.MySMClass" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="boundaryBrain.MySMClass.startState">
+<span class="sig-name descname"><span class="pre">startState</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#boundaryBrain.MySMClass.startState" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boundaryBrain.MySMClass.getNextValues">
+<span class="sig-name descname"><span class="pre">getNextValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/boundaryBrain.html#MySMClass.getNextValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boundaryBrain.MySMClass.getNextValues" title="Link to this definition"></a></dt>
+<dd><p class="sd-card-text">Calculates the next values based on the current state and input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p class="sd-card-text"><strong>state</strong> (<em>State</em>) – The current state of the robot.</p></li>
+<li><p class="sd-card-text"><strong>inp</strong> (<em>Input</em>) – The input received from the robot’s sensors.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p class="sd-card-text">A tuple containing the next state and the action to perform.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p class="sd-card-text">Tuple[State, io.Action]</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Algorithm:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">The ‘State’ enumeration represents the robot’s state (forward, left, right).</p></li>
+<li><p class="sd-card-text">The ‘io.Action’ class defines the action to be performed (fvel: forward velocity, rvel: rotational velocity).</p></li>
+<li><p class="sd-card-text">The method uses the distances (<cite>inp.sonars</cite>) detected by the sonar sensors to make decisions.</p></li>
+<li><p class="sd-card-text">The front_dist, right_dist, and left_dist are calculated as the minimum distances from the corresponding sensors.</p></li>
+<li><dl class="simple">
+<dt>The robot’s behavior is determined based on the sensor readings:</dt><dd><ul>
+<li><p class="sd-card-text">If there are no walls within a 3m range, the robot keeps going forwards.</p></li>
+<li><dl class="simple">
+<dt>If the front distance is less than 0.5, the robot stops and rotates right or left based on the left-side sensor readings (<cite>min(inp.sonars[0:3])</cite>).</dt><dd><ul>
+<li><p class="sd-card-text">If there is wall close to left side, then turns right else there is space on left to turn left.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="sd-card-text">If there is a wall on the right side farther than 0.5, the robot moves right.</p></li>
+<li><p class="sd-card-text">If there is a wall on the right side within 0.5 and 0.3, the robot moves forward.</p></li>
+<li><p class="sd-card-text">If there is a wall on the right side less than 0.3 away, the robot moves left.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</details></section>
+</section>
+<section id="module-hw01Work">
+<span id="homework-01"></span><h3>Homework 01<a class="headerlink" href="#module-hw01Work" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="hw01Work.BinaryOp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BinaryOp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#BinaryOp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.BinaryOp" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.BinaryOp.lazy_eval">
+<span class="sig-name descname"><span class="pre">lazy_eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#BinaryOp.lazy_eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.BinaryOp.lazy_eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate the lazy expression in the given environment.
+if any of right or left doesn’t evaluate into a Number
+then it’s simply still Binary Operation
+<cite>eval(self.opStr)(left_val, right_val)</cite> is equivalent to <cite>Sum(left_val, right_val)</cite> if opStr is ‘Sum’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>dict</em>) – The environment in which to evaluate the expression.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of evaluating the lazy expression.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int or float or str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.BinaryOp.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#BinaryOp.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.BinaryOp.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate the expression in the given environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>dict</em>) – The environment in which to evaluate the expression.</p></li>
+<li><p><strong>lazy</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to lazily evaluate the expression. Defaults to LAZY.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of evaluating the expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hw01Work.Sum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Sum" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="hw01Work.Sum.opStr">
+<span class="sig-name descname"><span class="pre">opStr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Sum'</span></em><a class="headerlink" href="#hw01Work.Sum.opStr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Sum.op">
+<span class="sig-name descname"><span class="pre">op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hw01Work.Sum.op" title="Link to this definition"></a></dt>
+<dd><p>Same as a + b.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hw01Work.Prod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Prod" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="hw01Work.Prod.opStr">
+<span class="sig-name descname"><span class="pre">opStr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Prod'</span></em><a class="headerlink" href="#hw01Work.Prod.opStr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Prod.op">
+<span class="sig-name descname"><span class="pre">op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hw01Work.Prod.op" title="Link to this definition"></a></dt>
+<dd><p>Same as a * b.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hw01Work.Quot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Quot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Quot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Quot" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="hw01Work.Quot.opStr">
+<span class="sig-name descname"><span class="pre">opStr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Quot'</span></em><a class="headerlink" href="#hw01Work.Quot.opStr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Quot.op">
+<span class="sig-name descname"><span class="pre">op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hw01Work.Quot.op" title="Link to this definition"></a></dt>
+<dd><p>Same as a / b.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hw01Work.Diff">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Diff" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="hw01Work.Diff.opStr">
+<span class="sig-name descname"><span class="pre">opStr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Diff'</span></em><a class="headerlink" href="#hw01Work.Diff.opStr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Diff.op">
+<span class="sig-name descname"><span class="pre">op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hw01Work.Diff.op" title="Link to this definition"></a></dt>
+<dd><p>Same as a - b.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hw01Work.Assign">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Assign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Assign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Assign" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="hw01Work.Assign.opStr">
+<span class="sig-name descname"><span class="pre">opStr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Assign'</span></em><a class="headerlink" href="#hw01Work.Assign.opStr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Assign.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Assign.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Assign.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluate the expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>dict</em>) – The environment in which the expression is evaluated.</p></li>
+<li><p><strong>lazy</strong> (<em>bool</em><em>, </em><em>optional</em>) – If lazy evaluation should be performed. Defaults to LAZY.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Assign.lazy_eval">
+<span class="sig-name descname"><span class="pre">lazy_eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Assign.lazy_eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Assign.lazy_eval" title="Link to this definition"></a></dt>
+<dd><p>Assigns the value of <cite>self.right</cite> to the variable <cite>self.left.name</cite> in the given environment <cite>env</cite>.
+Does not evaluate the right hand side; simply assign the value of the variable in the environment (<cite>self.left.name</cite>) to be the unevaluated syntax tree (<cite>self.right</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>dict</em>) – The environment in which the assignment will be made.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hw01Work.Number">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Number" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Number.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Number.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Number.eval" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hw01Work.Variable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Variable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Variable" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Variable.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Variable.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Variable.eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the expression in the given environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>dict</em>) – The environment in which the expression is evaluated.</p></li>
+<li><p><strong>lazy</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to lazily evaluate the expression. Defaults to LAZY.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The evaluated value of the expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hw01Work.Variable.lazy_eval">
+<span class="sig-name descname"><span class="pre">lazy_eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#Variable.lazy_eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.Variable.lazy_eval" title="Link to this definition"></a></dt>
+<dd><p>Evaluates a lazy expression based on the given environment.
+1. If there is no variable in the environment already, simply returns an instance of Variable
+with the name of the variable
+2. Otherwise, returns the value of the variable from the environment if the variable is a number
+3. Otherwise, returns the syntax tree for the expression</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>dict</em>) – The environment containing variable-value mappings.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The evaluated expression.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#hw01Work.Variable" title="hw01Work.Variable">Variable</a> or Num</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.tokenizeLegacy">
+<span class="sig-name descname"><span class="pre">tokenizeLegacy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#tokenizeLegacy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.tokenizeLegacy" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.tokenize">
+<span class="sig-name descname"><span class="pre">tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#tokenize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.tokenize" title="Link to this definition"></a></dt>
+<dd><p>Tokenizes a given string into a list of tokens.
+For each charecter in the string, it checks if it is a space or sperator (<cite>(</cite>, <cite>)</cite>, <cite>+</cite>, <cite>-</cite>, <cite>*</cite>, <cite>/</cite>, <cite>=</cite>)
+Need to check for spaces for cases like ‘hi 33 777’</p>
+<p>If the character is a separator or space, the function adds the substring that starts from
+the <cite>start</cite> index and ends just before the current index (<cite>end</cite>) to the <cite>tokens</cite> list.
+This extracted substring is stripped of any leading or trailing spaces to ensure clean tokens.
+Additionally, the current character is added as a separate token to the <cite>tokens</cite> list.</p>
+<p>The <cite>start</cite> index is then updated to the position after the last separator or space.</p>
+<p>At the end of the loop, if the <cite>start</cite> index is not equal to the <cite>end</cite> index, it means there
+is a final token to be added to the <cite>tokens</cite> list. Only happnes when the last token
+is not followed by a separator.
+Eg. tokenize(‘fred+george’)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – The string to be tokenized.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of tokens extracted from the input string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.parse">
+<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokens</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.parse" title="Link to this definition"></a></dt>
+<dd><p>Parses a list of tokens and returns the parsed expression.</p>
+<p>Parameters:
+- tokens (list): A list of tokens representing an arithmetic expression.</p>
+<p>Returns:
+- parsedExp: The parsed expression.</p>
+<p>Example:
+parse([‘(’, ‘+’, ‘2’, ‘3’, ‘)’]) returns Sum(Number(2), Number(3))</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.numberTok">
+<span class="sig-name descname"><span class="pre">numberTok</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#numberTok"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.numberTok" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.variableTok">
+<span class="sig-name descname"><span class="pre">variableTok</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#variableTok"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.variableTok" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.isNum">
+<span class="sig-name descname"><span class="pre">isNum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#isNum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.isNum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.calc">
+<span class="sig-name descname"><span class="pre">calc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#calc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.calc" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.calcTest">
+<span class="sig-name descname"><span class="pre">calcTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exprs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#calcTest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.calcTest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.testTokenize">
+<span class="sig-name descname"><span class="pre">testTokenize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#testTokenize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.testTokenize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.testParse">
+<span class="sig-name descname"><span class="pre">testParse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#testParse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.testParse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.testEval">
+<span class="sig-name descname"><span class="pre">testEval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#testEval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.testEval" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="hw01Work.testExprs">
+<span class="sig-name descname"><span class="pre">testExprs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['(2</span> <span class="pre">+</span> <span class="pre">5)',</span> <span class="pre">'(z</span> <span class="pre">=</span> <span class="pre">6)',</span> <span class="pre">'z',</span> <span class="pre">'(w</span> <span class="pre">=</span> <span class="pre">(z</span> <span class="pre">+</span> <span class="pre">1))',</span> <span class="pre">'w']</span></em><a class="headerlink" href="#hw01Work.testExprs" title="Link to this definition"></a></dt>
+<dd><p>Answers are:
+Sum(Var(b), Var(c))
+Sum(2.0, Var(c))
+6.0</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hw01Work.testLazyEval">
+<span class="sig-name descname"><span class="pre">testLazyEval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hw01Work.html#testLazyEval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hw01Work.testLazyEval" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../unit2/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Unit 2 Signal and Systems</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Muhammed Abdullah
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Unit 1: Software Engineering</a><ul>
+<li><a class="reference internal" href="#lecture-1-oop">Lecture 1 OOP</a><ul>
+<li><a class="reference internal" href="#lecture-handout">Lecture Handout:</a></li>
+<li><a class="reference internal" href="#readings">Readings</a></li>
+<li><a class="reference internal" href="#my-notes">My Notes</a></li>
+<li><a class="reference internal" href="#design-lab-01">Design Lab 01</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lecture-2-state-machines">Lecture 2 State Machines</a><ul>
+<li><a class="reference internal" href="#id1">Lecture Handout</a></li>
+<li><a class="reference internal" href="#reading">Reading</a></li>
+<li><a class="reference internal" href="#id2">My Notes</a></li>
+<li><a class="reference internal" href="#software-lab-02">Software Lab 02</a></li>
+<li><a class="reference internal" href="#design-lab-02-controlling-robots"><strong>Design Lab 02 (Controlling Robots)</strong></a></li>
+<li><a class="reference internal" href="#module-hw01Work">Homework 01</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
