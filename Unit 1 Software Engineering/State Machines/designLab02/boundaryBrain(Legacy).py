@@ -4,6 +4,8 @@ import lib601.sm as sm
 import lib601.gfx as gfx
 from soar.io import io
 
+## Not the Solution
+## Just the initial thought process
 
 # Eight sonars in front
 #  threrefore 180 degrees divided in 8 angles
