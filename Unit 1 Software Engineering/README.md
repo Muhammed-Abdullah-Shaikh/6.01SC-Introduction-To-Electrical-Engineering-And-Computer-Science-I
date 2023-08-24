@@ -1,3 +1,7 @@
+# Unit 1 Software Engineering
+
+My Notes: [Unit 1 Software Engineering\MIT 6.01SC Unit 1 Software Engineering Notes.pdf](./MIT%206.01SC%20Unit%201%20Software%20Engineering%20Notes.pdf)
+
 # [designLab2](MIT6_01SCS11_designLab02.pdf)
 
 ## State Transition Diagram
