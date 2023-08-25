@@ -1,5 +1,4 @@
 import lib601.sm as sm
-# ref https://sourceforge.net/projects/easypythondecompiler/
 
 ##################################
 # Double Delay SM

@@ -14,6 +14,13 @@ class BinaryOp:
                str(self.right) + ')'
     __repr__ = __str__
 
+    def draw_tree(self, level=0):
+        prefix = ' ' * level * 4
+        tree_str = prefix + str(self) + '\n'
+        tree_str += self.left.draw_tree(level + 1)
+        tree_str += self.right.draw_tree(level + 1)
+        return tree_str
+
 class Sum(BinaryOp):
     opStr = 'Sum'
 
@@ -36,6 +43,9 @@ class Number:
         return 'Num('+str(self.value)+')'
     __repr__ = __str__
 
+    def draw_tree(self, level=0):
+        return ' ' * level * 4 + str(self) + '\n'
+
 class Variable:
     def __init__(self, name):
         self.name = name
@@ -43,13 +53,38 @@ class Variable:
         return 'Var('+self.name+')'
     __repr__ = __str__
 
+    def draw_tree(self, level=0):
+        return ' ' * level * 4 + str(self) + '\n'
+
 # characters that are single-character tokens
 seps = ['(', ')', '+', '-', '*', '/', '=']
 
 # Convert strings into a list of tokens (strings)
+def tokenizeLegacy(string):
+    tokens = [string.replace(" ", "")]
+    for sep in seps:
+        ## maps a list of strings to fuction slit by sep, 
+        ## returns a list of lists
+        ## sum with empty list flattens it out
+        ## However this approach also removes delimeters
+	    tokens = sum(map(lambda x: [l for l in x.split(sep) if l], tokens), [])
+    return tokens
+
+# Convert strings into a list of tokens (strings)
 def tokenize(string):
-    # <your code here>
-    pass
+    tokens = []
+    start = 0
+    end = 0
+    for char in string:
+        if char in seps or char == " ":
+            # Check for space for cases like 'hi 33 777' 
+            tokens.append(string[start:end].strip())
+            tokens.append(char.strip())
+            start = end+1
+        end += 1
+    if start != end:
+        tokens.append(string[start:end])
+    return [l for l in tokens if l]
 
 # tokens is a list of tokens
 # returns a syntax tree:  an instance of {\tt Number}, {\tt Variable},
