@@ -2,7 +2,7 @@
 
 My Notes: [Unit 1 Software Engineering\MIT 6.01SC Unit 1 Software Engineering Notes.pdf](./MIT%206.01SC%20Unit%201%20Software%20Engineering%20Notes.pdf)
 
-# [designLab2](MIT6_01SCS11_designLab02.pdf)
+# [designLab2](https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/resources/mit6_01scs11_designlab02/)
 
 ## State Transition Diagram
 ![state transition diagram](./designLab02/media/designLab2statemachine.jpg)
