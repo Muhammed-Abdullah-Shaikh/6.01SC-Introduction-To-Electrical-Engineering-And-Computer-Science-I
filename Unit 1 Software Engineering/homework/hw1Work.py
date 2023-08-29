@@ -3,6 +3,8 @@ import lib601.sm as sm
 import string
 import operator
 
+LAZY=False
+
 class BinaryOp:
     def __init__(self, left, right):
         self.left = left
@@ -14,27 +16,47 @@ class BinaryOp:
                str(self.right) + ')'
     __repr__ = __str__
 
-    def draw_tree(self, level=0):
-        prefix = ' ' * level * 4
-        tree_str = prefix + str(self) + '\n'
-        tree_str += self.left.draw_tree(level + 1)
-        tree_str += self.right.draw_tree(level + 1)
-        return tree_str
+    def lazy_eval(self, env):
+        left_val = self.left.eval(env)
+        right_val = self.right.eval(env)
+        if not isNum(left_val) or not isNum(right_val):
+            return eval(self.opStr)(left_val, right_val)
+        return self.op(left_val, right_val)
+
+    def eval(self, env, lazy=LAZY):
+        if lazy:
+            return self.lazy_eval(env)
+        else:
+            return self.op(self.left.eval(env), self.right.eval(env))
+
 
 class Sum(BinaryOp):
     opStr = 'Sum'
+    op = operator.add
 
 class Prod(BinaryOp):
     opStr = 'Prod'
+    op = operator.mul
 
 class Quot(BinaryOp):
     opStr = 'Quot'
+    op = operator.truediv
 
 class Diff(BinaryOp):
     opStr = 'Diff'
+    op = operator.sub
 
 class Assign(BinaryOp):
     opStr = 'Assign'
+
+    def eval(self,env, lazy=LAZY):
+        if lazy:
+            self.lazy_eval(env)
+        else:
+            env[self.left.name] = self.right.eval(env)
+    
+    def lazy_eval(self, env):
+        env[self.left.name] = self.right
         
 class Number:
     def __init__(self, val):
@@ -43,8 +65,8 @@ class Number:
         return 'Num('+str(self.value)+')'
     __repr__ = __str__
 
-    def draw_tree(self, level=0):
-        return ' ' * level * 4 + str(self) + '\n'
+    def eval(self, env):
+        return self.value
 
 class Variable:
     def __init__(self, name):
@@ -53,8 +75,17 @@ class Variable:
         return 'Var('+self.name+')'
     __repr__ = __str__
 
-    def draw_tree(self, level=0):
-        return ' ' * level * 4 + str(self) + '\n'
+    def eval(self, env, lazy=LAZY):
+        if lazy:
+            return self.lazy_eval(env)
+        return env[self.name]
+
+    def lazy_eval(self, env):
+        if self.name not in env:
+            return Variable(self.name)
+        if isNum(env[self.name]):
+            return env[self.name]
+        return env[self.name].eval(env)
 
 # characters that are single-character tokens
 seps = ['(', ')', '+', '-', '*', '/', '=']
@@ -91,8 +122,31 @@ def tokenize(string):
 # or one of the subclasses of {\tt BinaryOp} 
 def parse(tokens):
     def parseExp(index):
-        # <your code here>
-        pass
+        if numberTok(tokens[index]):
+            return Number(float(tokens[index])), index + 1
+        if variableTok(tokens[index]):
+            return Variable(tokens[index]), index + 1
+        
+        if tokens[index] == '(':
+            left, index = parseExp(index + 1)
+            
+            token = tokens[index]
+            if token == '+':
+                op = Sum
+            elif token == '-':
+                op = Diff
+            elif token == '*':
+                op = Prod
+            elif token == '/':
+                op = Quot
+            elif token == '=':
+                op = Assign
+
+            right, index = parseExp(index + 1)
+
+            if tokens[index] == ')':
+                return op(left, right), index + 1
+        
     (parsedExp, nextIndex) = parseExp(0)
     return parsedExp
 
@@ -120,7 +174,7 @@ def calc():
     env = {}
     while True:
         e = raw_input('%')            # prints %, returns user input
-        print '%', # your expression here
+        print '%', parse(tokenize(e)).eval(env)
         print '   env =', env
 
 # exprs is a list of strings
@@ -129,7 +183,7 @@ def calcTest(exprs):
     env = {}
     for e in exprs:
         print '%', e                    # e is the experession 
-        print # your expression here
+        print '%', parse(tokenize(e)).eval(env)
         print '   env =', env
 
 # Simple tokenizer tests
