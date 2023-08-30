@@ -3,7 +3,7 @@ import lib601.sm as sm
 import string
 import operator
 
-LAZY=False
+LAZY=True
 
 class BinaryOp:
     def __init__(self, left, right):
@@ -17,13 +17,38 @@ class BinaryOp:
     __repr__ = __str__
 
     def lazy_eval(self, env):
+        """
+        Evaluate the lazy expression in the given environment.
+        if any of right or left doesn't evaluate into a Number
+        then it's simply still Binary Operation
+        `eval(self.opStr)(left_val, right_val)` is equivalent to `Sum(left_val, right_val)` if opStr is 'Sum'
+
+        Parameters:
+            env (dict): The environment in which to evaluate the expression.
+
+        Returns:
+            int or float or str: The result of evaluating the lazy expression.
+        """
         left_val = self.left.eval(env)
         right_val = self.right.eval(env)
+        # if any of right or left doesn't evaluate into a Number
+        # then it's simple still Binary Operation
+        # 
         if not isNum(left_val) or not isNum(right_val):
             return eval(self.opStr)(left_val, right_val)
         return self.op(left_val, right_val)
 
     def eval(self, env, lazy=LAZY):
+        """
+        Evaluate the expression in the given environment.
+
+        Args:
+            env (dict): The environment in which to evaluate the expression.
+            lazy (bool, optional): Whether to lazily evaluate the expression. Defaults to LAZY.
+
+        Returns:
+            The result of evaluating the expression.
+        """
         if lazy:
             return self.lazy_eval(env)
         else:
@@ -50,13 +75,34 @@ class Assign(BinaryOp):
     opStr = 'Assign'
 
     def eval(self,env, lazy=LAZY):
+        """
+        Evaluate the expression.
+
+        Args:
+            env (dict): The environment in which the expression is evaluated.
+            lazy (bool, optional): If lazy evaluation should be performed. Defaults to LAZY.
+
+        Returns:
+            None
+        """
         if lazy:
             self.lazy_eval(env)
         else:
             env[self.left.name] = self.right.eval(env)
     
     def lazy_eval(self, env):
+        """
+        Assigns the value of `self.right` to the variable `self.left.name` in the given environment `env`.
+        Does not evaluate the right hand side; simply assign the value of the variable in the environment (`self.left.name`) to be the unevaluated syntax tree (`self.right`).
+
+        Parameters:
+            env (dict): The environment in which the assignment will be made.
+
+        Returns:
+            None
+        """
         env[self.left.name] = self.right
+        
         
 class Number:
     def __init__(self, val):
@@ -76,11 +122,34 @@ class Variable:
     __repr__ = __str__
 
     def eval(self, env, lazy=LAZY):
+        """
+        Evaluates the expression in the given environment.
+
+        Parameters:
+            env (dict): The environment in which the expression is evaluated.
+            lazy (bool, optional): Whether to lazily evaluate the expression. Defaults to LAZY.
+
+        Returns:
+            The evaluated value of the expression.
+        """
         if lazy:
             return self.lazy_eval(env)
         return env[self.name]
 
     def lazy_eval(self, env):
+        """
+        Evaluates a lazy expression based on the given environment.
+        1. If there is no variable in the environment already, simply returns an instance of Variable
+        with the name of the variable
+        2. Otherwise, returns the value of the variable from the environment if the variable is a number
+        3. Otherwise, returns the syntax tree for the expression
+
+        Parameters:
+            env (dict): The environment containing variable-value mappings.
+
+        Returns:
+            Variable or Num: The evaluated expression.
+        """
         if self.name not in env:
             return Variable(self.name)
         if isNum(env[self.name]):
@@ -103,6 +172,29 @@ def tokenizeLegacy(string):
 
 # Convert strings into a list of tokens (strings)
 def tokenize(string):
+    """
+    Tokenizes a given string into a list of tokens.
+    For each charecter in the string, it checks if it is a space or sperator (`(`, `)`, `+`, `-`, `*`, `/`, `=`)
+        Need to check for spaces for cases like 'hi 33 777'
+        
+    If the character is a separator or space, the function adds the substring that starts from
+    the `start` index and ends just before the current index (`end`) to the `tokens` list.
+    This extracted substring is stripped of any leading or trailing spaces to ensure clean tokens.
+    Additionally, the current character is added as a separate token to the `tokens` list.
+    
+    The `start` index is then updated to the position after the last separator or space.
+
+    At the end of the loop, if the `start` index is not equal to the `end` index, it means there
+    is a final token to be added to the `tokens` list. Only happnes when the last token
+    is not followed by a separator.
+        Eg. tokenize('fred+george')
+
+    Parameters:
+        string (str): The string to be tokenized.
+
+    Returns:
+        list: A list of tokens extracted from the input string.
+    """
     tokens = []
     start = 0
     end = 0
@@ -121,7 +213,42 @@ def tokenize(string):
 # returns a syntax tree:  an instance of {\tt Number}, {\tt Variable},
 # or one of the subclasses of {\tt BinaryOp} 
 def parse(tokens):
+    """
+    Parses a list of tokens and returns the parsed expression.
+
+    Parameters:
+    - tokens (list): A list of tokens representing an arithmetic expression.
+
+    Returns:
+    - parsedExp: The parsed expression.
+
+    Example:
+    parse(['(', '+', '2', '3', ')']) returns Sum(Number(2), Number(3))
+    """
     def parseExp(index):
+        """
+        Parses an expression from a given index in the tokens list.
+
+        1. If token represents a number, then make it into a Number instance and return that, paired with index+1.
+        2. If token represents a variable name, then make it into a Variable instance and return that paired with index+1. 
+        3. Otherwise, the sequence of tokens starting at index must be of the form: (  expression  op  expression  )
+            Therefore, token must be `(` 
+            - Using recursive call to parseExp, gives a  syntax tree for left side and 
+            the index for the token beyond the end of the expression. 
+            - The token beyond leftTree is a single-character operator token called op. 
+            This op determines the Binary Operation to be performed.
+            - Again using a recursive call to parseExp, gives a syntax tree for right side and
+            the index for the token beyond the end of the expression.
+
+        Parameters:
+            index (int): The index in the tokens list from where to start parsing the expression.
+
+        Returns:
+            tuple: A tuple containing the parsed expression and the updated index.
+
+        Raises:
+            None
+        """
         if numberTok(tokens[index]):
             return Number(float(tokens[index])), index + 1
         if variableTok(tokens[index]):

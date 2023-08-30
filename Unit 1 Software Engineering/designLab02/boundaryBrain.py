@@ -16,6 +16,30 @@ class MySMClass(sm.SM):
     startState = State.forward
 
     def getNextValues(self, state, inp):
+        """
+        Calculates the next values based on the current state and input.
+
+        Args:
+            state (State): The current state of the robot.
+            inp (Input): The input received from the robot's sensors.
+
+        Returns:
+            Tuple[State, io.Action]: A tuple containing the next state and the action to perform.
+
+        Algorithm:
+            - The 'State' enumeration represents the robot's state (forward, left, right).
+            - The 'io.Action' class defines the action to be performed (fvel: forward velocity, rvel: rotational velocity).
+            - The method uses the distances (`inp.sonars`) detected by the sonar sensors to make decisions.
+            - The front_dist, right_dist, and left_dist are calculated as the minimum distances from the corresponding sensors.
+            - The robot's behavior is determined based on the sensor readings:
+                - If there are no walls within a 3m range, the robot keeps going forwards.
+                - If the front distance is less than 0.5, the robot stops and rotates right or left based on the left-side sensor readings (`min(inp.sonars[0:3])`).
+                    - If there is wall close to left side, then turns right else there is space on left to turn left.
+                - If there is a wall on the right side farther than 0.5, the robot moves right.
+                - If there is a wall on the right side within 0.5 and 0.3, the robot moves forward.
+                - If there is a wall on the right side less than 0.3 away, the robot moves left.
+
+        """
         front_dist = min(inp.sonars[3], inp.sonars[4])
         right_dist = min(inp.sonars[6], inp.sonars[7])
         left_dist = min(inp.sonars[0], inp.sonars[1])
