@@ -9,7 +9,7 @@ import mock
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'MIT 6.01SC Introduction To Electrical Engineering And Computer Science I Solutions'
+project = 'MIT 6.01SC Introduction To Electrical Engineering And Computer Science I'
 copyright = '2023, Muhammed Abdullah'
 author = 'Muhammed Abdullah'
 release = '0.0.1'
@@ -25,8 +25,16 @@ extensions = [
         'sphinx.ext.viewcode',
         'sphinx.ext.duration',
         'sphinx_rtd_theme',
-        # 'myst_parser'
+        'myst_parser',
+        'sphinx_simplepdf'
         ]
+
+source_suffix = ['.rst', '.md']
+
+myst_enable_extensions = [
+    "colon_fence",
+    "deflist",
+]
 
 ## Extension Settings
 # Napoleon settings
@@ -61,9 +69,11 @@ exclude_patterns = []
 html_theme = 'furo'
 html_static_path = ['_static']
 
-sys.path.insert(0, os.path.abspath('../../Unit 1 Software Engineering/swLab02'))
+sys.path.insert(0, os.path.abspath('../..'))
+# sys.path.insert(0, os.path.abspath('../../Unit 1 Software Engineering/swLab02'))
 sys.path.insert(0, os.path.abspath('../../Unit 1 Software Engineering/designLab01'))
 sys.path.insert(0, os.path.abspath('../../Unit 1 Software Engineering/designLab02'))
-sys.path.insert(0, os.path.abspath('../../Unit 1 Software Engineering/homework'))
+#sys.path.insert(0, os.path.abspath('../../Unit 1 Software Engineering/homework'))
 sys.path.insert(0, os.path.abspath('../../Unit 2 Signals and Systems/designLab03'))
+sys.path.insert(0, os.path.abspath('../../Unit 2 Signals and Systems/quiz03'))
 # sys.path.insert(0, os.path.abspath('../../Unit 2 Signals and Systems/'))

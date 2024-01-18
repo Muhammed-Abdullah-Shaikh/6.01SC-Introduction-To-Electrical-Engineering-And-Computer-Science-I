@@ -7,11 +7,11 @@ class State:
 class Vending(sm.SM):
     """
     Vending MachineThe vending machine has an unlimited number of sodas that it sells for 75 cents apiece. 
-    * The user can deposit quarters in the machine. 
-    * If the user presses the cancel button, all the coins she's put in so far are returned. 
-    * If the user presses the dispense button, 
-        * If she had not deposited at least 75 cents, she gets no soda and no change. 
-        * If she had deposited 75 cents or more, she gets a soda and any amount over 75 cents that she has deposited. 
+        - The user can deposit quarters in the machine. 
+        - If the user presses the cancel button, all the coins she's put in so far are returned. 
+        - If the user presses the dispense button, 
+            - If she had not deposited at least 75 cents, she gets no soda and no change. 
+            - If she had deposited 75 cents or more, she gets a soda and any amount over 75 cents that she has deposited. 
     """
     startState = 0
     sodaPrice = 75
