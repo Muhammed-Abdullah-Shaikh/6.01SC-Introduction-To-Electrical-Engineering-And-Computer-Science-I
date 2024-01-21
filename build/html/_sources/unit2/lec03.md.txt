@@ -4,7 +4,7 @@ tocdepth: 4
 
 ```{admonition} TL;DR
 :class: tip
-See on this page: [Design Lab 03 (All Carrot, No Stick)](designLab02)
+See on this page: [Design Lab 03 (All Carrot, No Stick)](designLab3)
 ```
 
 # Unit 2: Signals and Systems

@@ -206,7 +206,7 @@
 <section class="tex2jax_ignore mathjax_ignore" id="unit-1-software-engineering">
 <h1>Unit 1: Software Engineering<a class="headerlink" href="#unit-1-software-engineering" title="Link to this heading"></a></h1>
 <p>Notes:</p>
-<iframe src="MIT 6.01SC Unit 1 Software Engineering Notes.pdf" style="height: 400px; width: 100%"></iframe><section id="lecture-1-oop">
+<iframe src="../_static/MIT 6.01SC Unit 1 Software Engineering Notes.pdf" style="height: 400px; width: 100%"></iframe><section id="lecture-1-oop">
 <h2>Lecture 1 OOP<a class="headerlink" href="#lecture-1-oop" title="Link to this heading"></a></h2>
 <section id="lecture-handout">
 <h3>Lecture Handout:<a class="headerlink" href="#lecture-handout" title="Link to this heading"></a></h3>
@@ -284,6 +284,13 @@ output at time t; and</p></li>
 </section>
 <section id="design-lab-02-controlling-robots">
 <h3><strong>Design Lab 02 (Controlling Robots)</strong><a class="headerlink" href="#design-lab-02-controlling-robots" title="Link to this heading"></a></h3>
+<section id="objective-following-boundaries">
+<h4>Objective: Following Boundaries<a class="headerlink" href="#objective-following-boundaries" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>When there is nothing nearby, the robot should move straight forward.</p></li>
+<li><p>As soon as the robot reaches an obstacle in front, it should follow the boundary of the obstacle, keeping the right side of the robot between <span class="math notranslate nohighlight">\(0.3\)</span> and <span class="math notranslate nohighlight">\(0.5\)</span> meters from the obstacle.</p></li>
+</ol>
+</section>
 <section id="state-transition-diagram">
 <h4>State Transition Diagram<a class="headerlink" href="#state-transition-diagram" title="Link to this heading"></a></h4>
 <p><img alt="state transition diagram" src="../_images/designLab2statemachine.jpg" /></p>
@@ -755,7 +762,13 @@ Sum(2.0, Var(c))
 <li><a class="reference internal" href="#reading">Reading</a></li>
 <li><a class="reference internal" href="#id2">My Notes</a></li>
 <li><a class="reference internal" href="#software-lab-02">Software Lab 02</a></li>
-<li><a class="reference internal" href="#design-lab-02-controlling-robots"><strong>Design Lab 02 (Controlling Robots)</strong></a></li>
+<li><a class="reference internal" href="#design-lab-02-controlling-robots"><strong>Design Lab 02 (Controlling Robots)</strong></a><ul>
+<li><a class="reference internal" href="#objective-following-boundaries">Objective: Following Boundaries</a></li>
+<li><a class="reference internal" href="#state-transition-diagram">State Transition Diagram</a></li>
+<li><a class="reference internal" href="#tutorial">Tutorial</a></li>
+<li><a class="reference internal" href="#mazeworld">MazeWorld</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-hw01Work">Homework 01</a></li>
 </ul>
 </li>
