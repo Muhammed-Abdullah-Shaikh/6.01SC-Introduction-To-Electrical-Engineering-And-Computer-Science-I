@@ -167,7 +167,7 @@ def tokenizeLegacy(string):
         ## returns a list of lists
         ## sum with empty list flattens it out
         ## However this approach also removes delimeters
-        tokens = sum([[l for l in x.split(sep) if l] for x in tokens], [])
+	    tokens = sum(map(lambda x: [l for l in x.split(sep) if l], tokens), [])
     return tokens
 
 # Convert strings into a list of tokens (strings)
@@ -300,18 +300,18 @@ def isNum(thing):
 def calc():
     env = {}
     while True:
-        e = input('%')            # prints %, returns user input
-        print('%', parse(tokenize(e)).eval(env))
-        print('   env =', env)
+        e = raw_input('%')            # prints %, returns user input
+        print '%', parse(tokenize(e)).eval(env)
+        print '   env =', env
 
 # exprs is a list of strings
 # runs calculator on those strings, in sequence, using the same environment
 def calcTest(exprs):
     env = {}
     for e in exprs:
-        print('%', e)                    # e is the experession 
-        print('%', parse(tokenize(e)).eval(env))
-        print('   env =', env)
+        print '%', e                    # e is the experession 
+        print '%', parse(tokenize(e)).eval(env)
+        print '   env =', env
 
 # Simple tokenizer tests
 '''Answers are:
@@ -325,14 +325,14 @@ def calcTest(exprs):
 ['(', 'fred', '+', 'george', ')']
 '''
 def testTokenize():
-    print(tokenize('fred '))
-    print(tokenize('777 '))
-    print(tokenize('777 hi 33 '))
-    print(tokenize('**-)('))
-    print(tokenize('( hi * ho )'))
-    print(tokenize('(fred + george)'))
-    print(tokenize('(hi*ho)'))
-    print(tokenize('( fred+george )'))
+    print tokenize('fred ')
+    print tokenize('777 ')
+    print tokenize('777 hi 33 ')
+    print tokenize('**-)(')
+    print tokenize('( hi * ho )')
+    print tokenize('(fred + george)')
+    print tokenize('(hi*ho)')
+    print tokenize('( fred+george )')
 
 
 # Simple parsing tests from the handout
@@ -345,12 +345,12 @@ Quot(Prod(Var(a), Var(b)), Diff(Var(cee), Var(doh)))
 Assign(Var(a), Prod(Num(3.0), Num(5.0)))
 '''
 def testParse():
-    print(parse(['a']))
-    print(parse(['888']))
-    print(parse(['(', 'fred', '+', 'george', ')']))
-    print(parse(['(', '(', 'a', '*', 'b', ')', '/', '(', 'cee', '-', 'doh', ')' ,')']))
-    print(parse(tokenize('((a * b) / (cee - doh))')))
-    print(parse(tokenize('(a = (3 * 5))')))
+    print parse(['a'])
+    print parse(['888'])
+    print parse(['(', 'fred', '+', 'george', ')'])
+    print parse(['(', '(', 'a', '*', 'b', ')', '/', '(', 'cee', '-', 'doh', ')' ,')'])
+    print parse(tokenize('((a * b) / (cee - doh))'))
+    print parse(tokenize('(a = (3 * 5))'))
 
 ####################################################################
 # Test cases for EAGER evaluator
@@ -359,16 +359,16 @@ def testParse():
 def testEval():
     env = {}
     Assign(Variable('a'), Number(5.0)).eval(env)
-    print(Variable('a').eval(env))
+    print Variable('a').eval(env)
     env['b'] = 2.0
-    print(Variable('b').eval(env))
+    print Variable('b').eval(env)
     env['c'] = 4.0
-    print(Variable('c').eval(env))
-    print(Sum(Variable('a'), Variable('b')).eval(env))
-    print(Sum(Diff(Variable('a'), Variable('c')), Variable('b')).eval(env))
+    print Variable('c').eval(env)
+    print Sum(Variable('a'), Variable('b')).eval(env)
+    print Sum(Diff(Variable('a'), Variable('c')), Variable('b')).eval(env)
     Assign(Variable('a'), Sum(Variable('a'), Variable('b'))).eval(env)
-    print(Variable('a').eval(env))
-    print(env)
+    print Variable('a').eval(env)
+    print env
 
 # Basic calculator test cases (see handout)
 testExprs = ['(2 + 5)',
@@ -392,11 +392,11 @@ Sum(2.0, Var(c))
 def testLazyEval():
     env = {}
     Assign(Variable('a'), Sum(Variable('b'), Variable('c'))).eval(env)
-    print(Variable('a').eval(env))
+    print Variable('a').eval(env)
     env['b'] = Number(2.0)
-    print(Variable('a').eval(env))
+    print Variable('a').eval(env)
     env['c'] = Number(4.0)
-    print(Variable('a').eval(env))
+    print Variable('a').eval(env)
 
 # Lazy partial eval test cases (see handout)
 lazyTestExprs = ['(a = (b + c))',
