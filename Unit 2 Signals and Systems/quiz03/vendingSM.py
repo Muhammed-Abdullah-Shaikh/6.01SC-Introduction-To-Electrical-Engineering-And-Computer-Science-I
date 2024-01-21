@@ -6,7 +6,7 @@ class State:
 
 class Vending(sm.SM):
     """
-    Vending MachineThe vending machine has an unlimited number of sodas that it sells for 75 cents apiece. 
+    Vending MachineThe vending machine has an unlimited number of sodas that it sells for 75 cents apiece.
         - The user can deposit quarters in the machine. 
         - If the user presses the cancel button, all the coins she's put in so far are returned. 
         - If the user presses the dispense button, 

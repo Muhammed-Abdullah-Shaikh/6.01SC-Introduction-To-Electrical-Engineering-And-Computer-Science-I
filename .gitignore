@@ -1,7 +1,7 @@
 6.01sc-spring-2011/
 
 # pdfs
-docs/
+docs/build
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

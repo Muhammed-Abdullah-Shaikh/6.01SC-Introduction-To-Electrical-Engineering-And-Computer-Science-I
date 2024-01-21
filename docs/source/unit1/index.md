@@ -1,6 +1,16 @@
+---
+tocdepth: 3
+---
+% for the right sidebar content. equivalent to ":tocdepth: 3"
+
+```{admonition} TL;DR
+:class: tip
+Must See on this page: [Design Lab 02 (Controlling Robots)](designLab02)
+```
+
 # Unit 1: Software Engineering
 
-![My Notes](https://github.com/Muhammed-Abdullah-Shaikh/MIT-6.S096-Introduction-To-C-And-CPP/files/12429860/MIT.6.01SC.Unit.1.Software.Engineering.Notes.pdf)
+Notes:
 
 ```{pdf-include} ../../../../Unit 1 Software Engineering/MIT 6.01SC Unit 1 Software Engineering Notes.pdf
 
@@ -31,19 +41,12 @@ understanding the whole.
 and internal details of how they are constructed
 - Think of a transducer as a processing box that runs continuously.
 - In the context of our PCAP framework, object-oriented programming will give us methods for capturing common patterns in data and the procedures that operate on that data, via classes, generic functions, and inheritance.
-- 
     
-![Untitled](media/Untitled.png)
+![PACP](media/PCAP.png)
     
-
 ### Design Lab 01
 
-[Github Link](https://github.com/Muhammed-Abdullah-Shaikh/MIT-6.01SC-Introduction-To-Electrical-Engineering-And-Computer-Science-I/tree/master/Unit%201%20Software%20Engineering)
-
-```{literalinclude} ../../../Unit 1 Software Engineering/designLab01/designLab01Work.py
-:language: python
-:lines: 10-16, 20-40,43-124
-```
+[Source Code](designLab01Work)
 
 ## Lecture 2 State Machines
 
@@ -69,30 +72,75 @@ as a state machine (SM) by specifying:
     - set of states, S,
     - a set of inputs, I, also called the input vocabulary,
     - a set of outputs, O, also called the output vocabulary,
-    - a next-state function, n(it, st) 7→ st+1, that maps the input at time t and the state at time t to
+    - a next-state function, $n(i_s, s_t) \mapsto s_{t+1}$, that maps the input at time t and the state at time t to
     the state at time t + 1,
-    - an output function, o(it, st) 7→ ot, that maps the input at time t and the state at time t to the
+    - an output function, $o(i_s, s_t) \mapsto o_t$, that maps the input at time t and the state at time t to the
     output at time t; and
     - an initial state, s0, which is the state at time 0.
 - It is important to note that getNextValues does not change the state of the machine, in other words, it does not mutate a state variable. Its job is to be a pure function:
 
 ### Software Lab 02
 
-[Github Link](https://github.com/Muhammed-Abdullah-Shaikh/MIT-6.01SC-Introduction-To-Electrical-Engineering-And-Computer-Science-I/tree/master/Unit%201%20Software%20Engineering)
+[Source Code](swLab02Work)
 
-### Design Lab 02
+### **Design Lab 02 (Controlling Robots)**
 
-[Github Link](https://github.com/Muhammed-Abdullah-Shaikh/MIT-6.01SC-Introduction-To-Electrical-Engineering-And-Computer-Science-I/tree/master/Unit%201%20Software%20Engineering)
+#### State Transition Diagram
+![state transition diagram](./media/designLab2statemachine.jpg)
 
-```{include} ../../../Unit 1 Software Engineering/README.md
-:heading-offset: 1
-:relative-images:
-:relative-docs: .
-:start-line: 5
+(designLab02)=
+#### Tutorial
+
+`````{tab-set}
+````{tab-item} Video
+```{video} https://github.com/Muhammed-Abdullah-Shaikh/MIT-6.01SC-Introduction-To-Electrical-Engineering-And-Computer-Science-I/assets/136577697/0bdca7f9-88ee-4204-b92a-bbd7f064d981
+---
+loop:
+nocontrols:
+autoplay:
+muted:
+---
 ```
-Code:
+````
+````{tab-item} Slime Trail
+```{image} media/tutorialPath.png
+:width: 70%
+```
+````
+`````
+#### MazeWorld
+
+`````{tab-set}
+````{tab-item} Video
+```{video} https://github.com/Muhammed-Abdullah-Shaikh/MIT-6.01SC-Introduction-To-Electrical-Engineering-And-Computer-Science-I/assets/136577697/1e0da0be-8d56-4670-88ea-55d6656cdfc5
+---
+loop:
+nocontrols:
+autoplay:
+muted:
+---
+```
+````
+````{tab-item} Slime Trail
+```{image} media/mazeWolrdPath.png
+:width: 70%
+```
+````
+`````
+
+````{dropdown} Source Code
+:open:
 ```{eval-rst}
 .. autoclass:: boundaryBrain::MySMClass
+   :members:
+   :undoc-members:
+```
+````
+
+### Homework 01
+
+```{eval-rst}
+.. automodule:: hw01Work
    :members:
    :undoc-members:
 ```

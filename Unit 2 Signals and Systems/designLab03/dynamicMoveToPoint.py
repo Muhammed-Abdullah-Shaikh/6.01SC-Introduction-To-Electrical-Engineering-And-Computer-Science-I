@@ -8,6 +8,9 @@ import math
 from soar.io import io
 
 def DynamicMoveToPoint(swtch=True, sequential=False):
+    """
+    Basically a method to choose between :class:`CombinedDynamicMoveToPoint` and :class:`SequentialDynamicMoveToPoint`
+    """
     dynamicMoveToPointSm = CombinedDynamicMoveToPoint()
     if sequential:
         dynamicMoveToPointSm = SequentialDynamicMoveToPoint()
@@ -144,6 +147,11 @@ class StopSM(sm.SM):
         return ("stop", io.Action())
 
 def switchCondition(inp):
+    """
+    Use the sm.Switch state-machine combinator in :func:`DynamicMoveToPoint` to make a robot that stops for pedestrians. 
+
+    The robot stops if front sonar distance is less that 0.3m.
+    """
     move = True
     frontSonarDist = min(inp[1].sonars[3:5])
     if frontSonarDist < 0.3:
