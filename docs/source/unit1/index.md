@@ -1,5 +1,5 @@
 ---
-tocdepth: 3
+tocdepth: 4
 ---
 % for the right sidebar content. equivalent to ":tocdepth: 3"
 
@@ -12,7 +12,7 @@ Must See on this page: [Design Lab 02 (Controlling Robots)](designLab02)
 
 Notes:
 
-```{pdf-include} ../../../../Unit 1 Software Engineering/MIT 6.01SC Unit 1 Software Engineering Notes.pdf
+```{pdf-include} ../_static/MIT 6.01SC Unit 1 Software Engineering Notes.pdf
 
 ```
 
@@ -84,6 +84,10 @@ as a state machine (SM) by specifying:
 [Source Code](swLab02Work)
 
 ### **Design Lab 02 (Controlling Robots)**
+
+#### Objective: Following Boundaries 
+1. When there is nothing nearby, the robot should move straight forward. 
+2.  As soon as the robot reaches an obstacle in front, it should follow the boundary of the obstacle, keeping the right side of the robot between $0.3$ and $0.5$ meters from the obstacle. 
 
 #### State Transition Diagram
 ![state transition diagram](./media/designLab2statemachine.jpg)

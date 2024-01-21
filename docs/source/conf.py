@@ -34,6 +34,8 @@ extensions = [
 
 source_suffix = ['.rst', '.md']
 
+toc_object_entries = False          # Create table of contents entries for domain objects (e.g. functions, classes, attributes, etc.). Default is True.
+
 myst_enable_extensions = [
     "colon_fence",          # Enable code fences using ::: delimiters instead of ````
     # "deflist",
